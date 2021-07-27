@@ -10,6 +10,7 @@
 > python manage.py runserver
 ## 5 run celery workers
 > celery -A nsenest beat -l info --logfile=celery.beat.log --detach
+## worker
 > celery -A nsenest worker -l info --logfile=celery.log --detach
 # index
 ![Alt text](https://github.com/vinayhosahalli/nsenest/blob/master/docs/1.png?raw=true "Title")
