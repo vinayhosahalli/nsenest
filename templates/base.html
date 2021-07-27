@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+
+    <title>NseNest</title>
+  </head>
+  <body onload="getGainerData()">
+  <div>
+      {% block content %}
+      {% endblock %}
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+<script>
+    var trHTML = '';
+function getGainerData() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://127.0.0.1:8000/api/nifty/gainers/");
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const objects = JSON.parse(this.responseText);
+            showCards(objects.data);
+
+}
+
+
+    };
+}
+function getLooserData() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://127.0.0.1:8000/api/nifty/loosers/");
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const objects = JSON.parse(this.responseText);
+            showCards(objects.data);
+
+}};}
+
+function showCards( objects) {
+    var card = document.getElementById("gainerCards")
+    trHTML = ''
+     for (let object of objects) {
+                trHTML += '<div class="card m-3">';
+                trHTML += '<div class="card-body bg-light mb-3">';
+                trHTML += '<h5 class="card-title">' + object['symbol'] + '</h5>';
+                trHTML += '<p class="card-text">' + object['ca_purpose'] + '.</p>';
+                trHTML += '</div>';
+                trHTML += '<table class="card-table table">';
+                trHTML += '<thead>';
+                trHTML += '<tr>';
+                trHTML += '<th scope="col">Price Title</th>';
+                trHTML += '<th scope="col">Price</th>';
+                trHTML += '</tr>';
+                trHTML += '</theader>';
+                trHTML += '<tbody>';
+                trHTML += '<tr>';
+                trHTML += '<td>Open Price</td>';
+                trHTML += '<td>' + object['open_price'] + '</td>';
+                trHTML += '</tr>';
+                trHTML += '<tr>';
+                trHTML += '<td>High Price</td>';
+                trHTML += '<td>' + object['high_price'] + '</td>';
+                trHTML += '</tr>';
+                trHTML += '<tr>';
+                trHTML += '<td>Low Price</td>';
+                trHTML += '<td>' + object['low_price'] + '</td>';
+                trHTML += '</tr>';
+                trHTML += '<tr>';
+                trHTML += '<td>Previous Price</td>';
+                trHTML += '<td>' + object['prev_price'] + '</td>';
+                trHTML += '</tr>';
+                trHTML += '<tr>';
+                trHTML += '<td>Net Price</td>';
+                trHTML += '<td>' + object['net_price'] + '</td>';
+                trHTML += '</tr>';
+                trHTML += '<tr>';
+                trHTML += '<td>Per Change</td>';
+                trHTML += '<td>' + object['perChange'] + '</td>';
+                trHTML += '</tr>';
+                trHTML += '<tr>';
+                trHTML += '<td>Net Price</td>';
+                trHTML += '<td>' + object['net_price'] + '</td>';
+                trHTML += '</tr>';
+                trHTML += '</tbody>';
+                trHTML += '</table>';
+                trHTML += '<div class="card-footer">';
+                trHTML += '<small class="text-muted">' + object['ca_ex_dt'] + '</small>';
+                trHTML += '</div>';
+                trHTML += ' </div>';
+            }
+
+            card.innerHTML = trHTML;
+        }
+
+window.onload
+</script>
+<style>
+
+</style>
+</html>

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qe)ieqk(1ki%@u2i!guc*zyf+qwekkn^pq15m*%l0$1@y4ah8n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -126,3 +126,14 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# REDIS And CELERY related settings
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+CELERY_BROKER_URL = F'redis://{REDIS_HOST}:{REDIS_PORT}'
+CELERY_RESULT_BACKEND = F'redis://{REDIS_HOST}:{REDIS_PORT}'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = "UTC"

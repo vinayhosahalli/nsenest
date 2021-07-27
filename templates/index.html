@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <body>
+    <div style="width: 100%" class="navbar-fixed-top">
+        <button
+                class="btn btn-primary btn-lg"
+                style="width: 50%; float: right"
+                onclick="getGainerData()">
+            Gainers
+        </button>
+        <button
+                class="btn btn-secondary btn-lg"
+                style="width: 50%; float: left"
+                onclick="getLooserData()">
+            Loosers
+        </button>
+    </div>
+
+    <div class="card-columns m-1" style="width: 100%" id="gainerCards"></div>
+{% endblock %}

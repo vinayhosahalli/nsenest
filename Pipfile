@@ -13,6 +13,7 @@ django-filter = "*"
 requests = "*"
 celery = {extras = ["redis"],version = "*"}
 redis = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
